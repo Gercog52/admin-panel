@@ -1,4 +1,4 @@
-interface Iuser {
+export interface Iuser {
   fullName: string
   phone: string
   email: string

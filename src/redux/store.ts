@@ -1,7 +1,7 @@
 import {createStore, combineReducers, applyMiddleware, compose, Action} from 'redux';
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import authReducer from './authReducer';
-import usersReducer from './usersReducers';
+import usersReducer from './usersReducer';
 import kabanBoardReducer from './kabanBoardReducer';
 
 
@@ -13,7 +13,7 @@ declare global {
 
 const redusers = combineReducers ({
   authInfo: authReducer,
-  users: usersReducer,
+  usersList: usersReducer,
   kabanBoard: kabanBoardReducer,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
