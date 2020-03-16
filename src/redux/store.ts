@@ -1,6 +1,8 @@
 import {createStore, combineReducers, applyMiddleware, compose, Action} from 'redux';
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import authReducer from './authReducer';
+import usersReducer from './usersReducers';
+import kabanBoardReducer from './kabanBoardReducer';
 
 
 declare global {
@@ -10,7 +12,9 @@ declare global {
 }
 
 const redusers = combineReducers ({
-  authInfo: authReducer
+  authInfo: authReducer,
+  users: usersReducer,
+  kabanBoard: kabanBoardReducer,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(redusers, composeEnhancers(applyMiddleware(thunkMiddleware)));

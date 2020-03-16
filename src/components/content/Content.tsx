@@ -14,11 +14,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { Button } from '@material-ui/core';
+import { Button, Switch } from '@material-ui/core';
+import {Link} from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import PersonIcon from '@material-ui/icons/Person';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import { Route } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -63,6 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
+      overflowX: 'hidden'
     },
     drawerClose: {
       transition: theme.transitions.create('width', {
@@ -91,6 +93,25 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#ffffff',
       fontSize: 16,
       fontWeight: 500,
+    },
+    circleBtnTolBarWrap: {
+      display: 'flex',
+      flexDirection: 'row-reverse',
+      padding: '8px 18px',
+    },
+    circleBtnTolBar: {
+      zIndex: 10,
+      width: 34,
+      height: 34,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#673ab7',
+      borderRadius: 100,
+      color: '#fff',
+      '& :hover': {
+        cursor: 'pointer'
+      }
     }
   }),
 );
@@ -104,9 +125,7 @@ export default function MiniDrawer(props:Iprops) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+ 
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -117,9 +136,7 @@ export default function MiniDrawer(props:Iprops) {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
+        className={clsx(classes.appBar)}
       >
         <Toolbar style={{display: 'flex', justifyContent:'space-between'}}>
           <Typography variant="h6" noWrap>
@@ -153,48 +170,36 @@ export default function MiniDrawer(props:Iprops) {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          <div className={classes.circleBtnTolBarWrap} >
+            <div className={classes.circleBtnTolBar} onClick={() => setOpen(r => !r)}>
+              {
+                (open) ? <ChevronLeftIcon/> : <ChevronRightIcon/>
+              }
+            </div>
+          </div>
+          <Link to='/kanbanBoard'>
+            <ListItem button>
+                <ListItemIcon>{<ListAltIcon/>}</ListItemIcon>
+                <ListItemText primary={'kanban board'} />
             </ListItem>
-          ))}
+          </Link>
+          <Link to='/users'>
+            <ListItem button>
+                <ListItemIcon>{<PersonIcon/>}</ListItemIcon>
+                <ListItemText primary={'users'} />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          
         </List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <Switch>
+          <Route path={'/kanbanBoard'}></Route>
+          <Route path={'/users'}></Route>
+        </Switch>
       </main>
     </div>
   );
