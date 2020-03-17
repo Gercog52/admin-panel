@@ -65,9 +65,6 @@ export default function LoginPage(props: Iprops) {
 
   return (
     <div className={styles.LoginPageWrap}>
-      <h3 className={styles.LoginPageWrap__title}>
-        НОВАЯ ГАЗЕТА
-      </h3>
       <div className={styles.LoginPageWrap__loginBtn} onClick={() => {props.authFunc()}}>
         <div className={styles.LoginPageWrap__loginBtnLogo}>
           <img src={`${Google__G__Logo}`} alt=""/>

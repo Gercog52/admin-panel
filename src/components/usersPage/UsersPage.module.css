@@ -1,0 +1,27 @@
+.table {
+  background-color: white;
+}
+
+.table__title {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  width: 104;
+  color: '#212121';
+  font-size: 21px;
+  font-weight: 500;
+}
+.table__listRow {
+  max-width: 1359px;
+  display: grid;
+  grid-template-columns: 65px minmax(250px,434px) repeat(4,180px);
+  align-items: center;
+  height: 92px;
+}
+.table__listHeader {
+  background-color: #fafafa;
+  color: #212121;
+  font-size: 16px;
+  font-weight: 500;
+}

@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: 100,
       flexGrow: 1,
       padding: theme.spacing(3),
-      zIndex: 10000000,
+      zIndex: 1,
     },
     logOutBtn: {
       color: '#ffffff',

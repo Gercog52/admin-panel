@@ -9,7 +9,6 @@ interface Iprops {
 }
 
 export function UsersPageContiner(props:Iprops) {
-  debugger
   return (
     <div>
       <UsersPage users={props.users}/>
